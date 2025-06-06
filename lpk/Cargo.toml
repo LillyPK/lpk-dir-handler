@@ -1,0 +1,9 @@
+[package]
+name = "lpk"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = "4.5.39"
+dialoguer = "0.11.0"
+sysinfo = "0.35"
