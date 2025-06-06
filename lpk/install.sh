@@ -2,27 +2,15 @@
 
 set -e
 
-REPO_URL="https://github.com/youruser/lpk"
-BINARY_URL="$REPO_URL/releases/latest/download/lpk"
-INSTALL_PATH="/usr/local/bin"
+INSTALL_DIR="/usr/local/bin"
+BINARY_NAME="lpk"
+RELEASE_URL="https://github.com/LillyPK/lpk-dir-handler/releases/download/spoonix/lpk"
 
-echo "Downloading lpk binary..."
-curl -L "$BINARY_URL" -o lpk
-chmod +x lpk
-sudo mv lpk "$INSTALL_PATH/lpk"
+echo "📥 Downloading lpk from release..."
+curl -L "$RELEASE_URL" -o "$BINARY_NAME"
 
-echo "Installing shell wrapper..."
-curl -L "$REPO_URL/raw/main/lpk.sh" -o lpk.sh
-chmod +x lpk.sh
-sudo mv lpk.sh "$INSTALL_PATH/lpk.sh"
+echo "🚚 Moving lpk to $INSTALL_DIR (you may be prompted for sudo)..."
+chmod +x "$BINARY_NAME"
+sudo mv "$BINARY_NAME" "$INSTALL_DIR/$BINARY_NAME"
 
-echo
-echo "To use lpk, add this function to your shell:"
-echo
-cat <<EOF
-lpk() {
-    source /usr/local/bin/lpk.sh "\$@"
-}
-EOF
-echo
-echo "Add it to ~/.bashrc or ~/.zshrc for permanent use."
+echo "✅ lpk installed successfully! You can now run 'lpk' from anywhere."
